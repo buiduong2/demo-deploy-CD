@@ -1,0 +1,9 @@
+services:
+  nginx:
+    image: duongbd1997/demo-nginx:${NGINX_VERSION}
+    container_name: demo-nginx
+    ports:
+      - "8080:80"
+    # env_file:
+    #   - /opt/myapp/.env   # 👈 file secret trên VPS (không commit)
+    restart: always

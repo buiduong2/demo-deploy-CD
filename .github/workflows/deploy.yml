@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout CD repo
+        uses: actions/checkout@v4
+
+      - name: Deploy with docker compose
+        run: |
+          docker compose \
+            --env-file versions.env \
+            pull
+
+          docker compose \
+            --env-file versions.env \
+            up -d
